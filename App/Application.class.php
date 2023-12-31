@@ -2,6 +2,8 @@
 
 namespace app;
 
+use app\controllers\IController;
+
 class Application {
 
     private function splitURI($uri): array{
@@ -21,7 +23,12 @@ class Application {
             $uriParams[0] = "404";
         }
 
-        echo "Loading page: $uriParams[0]";
+        $pageInfo = PAGES[$uriParams[0]];
+
+        /** @var IController $controller */
+        $controller = new $pageInfo["controller_class"];
+
+        $controller->show($pageInfo);
     }
 
 }

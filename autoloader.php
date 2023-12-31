@@ -5,7 +5,9 @@ const DEFAULT_NAMESPACE_BASE = "app";
 const DEFAULT_DIRECTORY_NAME = "App";
 
 const ALLOWED_FILE_EXTENSIONS = array(
-    ".class.php"
+    ".class.php",
+    ".tpl.php",
+    ".interface.php"
 );
 
 function autoloadClass($className) {
