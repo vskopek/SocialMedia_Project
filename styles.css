@@ -1,0 +1,81 @@
+body {
+    background-color: #f0f2f5;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;            /* Footer height */
+    justify-content: center;
+    text-align: center;
+}
+
+.post {
+    background-color: white;
+    display: inline-block;
+
+    transition: .25s;
+    height: auto;
+
+    -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,0.43);
+    -moz-box-shadow: 0 0 10px 1px rgba(0,0,0,0.43);
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.43);
+}
+
+.post .ptext{
+    padding-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.navbar-light {
+    background-color: white !important;
+}
+
+.comments-link{
+    color: black;
+    font-weight: bold;
+    text-align: right;
+    padding-bottom: 15px;
+    float: right;
+}
+
+.post .bottom {
+    padding-right: 10px;
+}
+
+.error404{
+    text-align: center;
+    width: auto;
+    height: 100%;
+}
+
+.navbar-login{
+    padding: 15px 15px 10px;
+}
+
+.signup-header{
+    text-align: center;
+}
+
+.signup-wrap{
+    background-color: white;
+}
+
+.signup-logout{
+    left: 50%;
+    width: 150px;
+    margin-left: -75px;
+
+    background-color: #e83636;
+    border-color: #a44343;
+    position: fixed;
+}
+
+.navbar-signup{
+    color: grey;
+    font-weight: bold;
+
+}

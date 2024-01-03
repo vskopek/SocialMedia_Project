@@ -1,4 +1,4 @@
-<h5>Copyright Sougood</h5>
+<footer>&copy; 2024 KIV/WEB Václav Škopek</footer>
 
 </body>
 
