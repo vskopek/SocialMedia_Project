@@ -12,7 +12,8 @@ class Application {
         return explode(" ", $uri);
     }
 
-    public function loadApplication($page){
+    public function loadApplication($page): void
+    {
         if(isset($page["params"])){
             $uriParams = $this->splitURI($page["params"]);
         }else{
@@ -28,7 +29,7 @@ class Application {
         /** @var IController $controller */
         $controller = new $pageInfo["controller_class"];
 
-        $controller->show($pageInfo);
+        $controller->show($pageInfo, $uriParams);
     }
 
 }

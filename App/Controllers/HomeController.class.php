@@ -2,23 +2,23 @@
 
 namespace app\controllers;
 
-use app\Models\DatabaseModel;
+use app\Models\PostModel;
 use app\Models\UserModel;
 use app\Views\TemplateLoader;
 
 class HomeController implements IController
 {
-    private $db;
-    private $userModel;
+    private UserModel $userModel;
+    private PostModel $postModel;
 
     public function __construct()
     {
-        $this->db = DatabaseModel::getDatabase();
         $this->userModel = UserModel::getUserModel();
+        $this->postModel = PostModel::getPostModel();
     }
 
 
-    public function show(array $pageInfo)
+    public function show(array $pageInfo, array $uriParams): void
     {
         $loggedIn = false;
         $wrongCredentials = false;
@@ -27,13 +27,22 @@ class HomeController implements IController
             $wrongCredentials = !$loggedIn;
         }
 
+        $res = $this->postModel->createPost($_POST);
+
+        if($res != null){
+            header('Location: /');
+        }
+
         $templateLoader = new TemplateLoader();
+
+        $posts = $this->postModel->getAllPosts();
 
         $templateLoader->printOutput(
             array(
                 "title" => $pageInfo["title"],
                 "loggedIn"=>$loggedIn,
-                "wrongCredentials"=>$wrongCredentials
+                "wrongCredentials"=>$wrongCredentials,
+                "posts"=>$this->postModel->translateToTemplatePosts($posts)
             )
             , $pageInfo["template"]);
     }

@@ -9,6 +9,17 @@ class UserModel
     private DatabaseModel $db;
     private SessionModel $session;
 
+    public const SUPER_ADMIN = 255;
+    public const ADMIN = 250;
+    public const AUTHOR = 50;
+    public const COMMENTER = 0;
+
+    const STRING_ROLES = array(
+        255=>"Super administrator",
+        250=>"Administrator",
+        50=>"Author",
+        0=>"Commenter"
+    );
 
     private function __construct()
     {
@@ -64,7 +75,8 @@ class UserModel
         return $this->db->returnLastInsertID();
     }
 
-    public function userLogin(string $username, string $password){
+    public function userLogin(string $username, string $password): bool
+    {
         $statement = "SELECT * FROM user WHERE username=:username";
 
         $result = $this->db->prepareAndExecuteStatement($statement, array("username"=>$username));
@@ -101,6 +113,18 @@ class UserModel
             }
         }
         return null;
+    }
+
+    public function getUserData($userId){
+        $statement = "SELECT * FROM user WHERE id_user=:id_user";
+
+        $result = $this->db->prepareAndExecuteStatement($statement, array("id_user" => $userId));
+
+        if (count($result) > 0) {
+            return $result[0];
+        }else{
+            return null;
+        }
     }
 
     public function userLogout(): void

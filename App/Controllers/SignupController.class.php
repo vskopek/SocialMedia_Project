@@ -2,23 +2,20 @@
 
 namespace app\controllers;
 
-use app\Models\DatabaseModel;
 use app\Models\UserModel;
 use app\Views\TemplateLoader;
 
 class SignupController implements IController
 {
-    private $db;
-    private $userModel;
+    private UserModel $userModel;
 
     public function __construct()
     {
-        $this->db = DatabaseModel::getDatabase();
         $this->userModel = UserModel::getUserModel();
     }
 
 
-    public function show(array $pageInfo)
+    public function show(array $pageInfo, array $uriParams): void
     {
         $this->userModel->checkForRegister($_POST);
 

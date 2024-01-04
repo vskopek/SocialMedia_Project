@@ -1,31 +1,47 @@
 <?php
 
-define("MYSQL_SERVER", "localhost");
-define("MYSQL_DB", "test");
-define("MYSQL_USERNAME", "root");
-define("MYSQL_PASSWORD", "root");
+use app\controllers\CommentController;
+use app\controllers\ErrorController;
+use app\controllers\HomeController;
+use app\controllers\ProfileController;
+use app\controllers\SignupController;
+use app\Views\TemplateLoader;
+
+const MYSQL_SERVER = "localhost";
+const MYSQL_DB = "test";
+const MYSQL_USERNAME = "root";
+const MYSQL_PASSWORD = "root";
 
 
 const PAGES = array(
     "home" => array(
         "title" => "Home",
 
-        "controller_class" => \app\controllers\HomeController::class,
-        "model_class" => \app\Models\AModel::class,
-        "template" => \app\Views\TemplateLoader::HOME_PAGE
+        "controller_class" => HomeController::class,
+        "template" => TemplateLoader::HOME_PAGE
     ),
     "signup" => array(
         "title" => "Signup",
 
-        "controller_class" => \app\controllers\SignupController::class,
-        "model_class" => \app\Models\UserModel::class,
-        "template" => \app\Views\TemplateLoader::SIGNUP_PAGE
+        "controller_class" => SignupController::class,
+        "template" => TemplateLoader::SIGNUP_PAGE
+    ),
+    "profile" => array(
+        "title" => "Profile",
+
+        "controller_class" => ProfileController::class,
+        "template" => TemplateLoader::PROFILE_PAGE
+    ),
+    "comments" => array(
+        "title" => "Comments",
+
+        "controller_class" => CommentController::class,
+        "template" => TemplateLoader::COMMENTS_PAGE
     ),
     "404" => array(
         "title" => "Error 404",
 
-        "controller_class" => \app\controllers\ErrorController::class,
-        "template" => \app\Views\TemplateLoader::ERROR_PAGE
+        "controller_class" => ErrorController::class,
+        "template" => TemplateLoader::ERROR_PAGE
     )
 );
-?>

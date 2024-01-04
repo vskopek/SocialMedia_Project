@@ -10,7 +10,8 @@ class SessionModel
         session_start();
     }
 
-    public function setValue(string $key, $value){
+    public function setValue(string $key, $value): void
+    {
         $_SESSION[$key] = $value;
     }
 
@@ -22,17 +23,20 @@ class SessionModel
         return null;
     }
 
-    public function hasKey(string $key){
+    public function hasKey(string $key): bool
+    {
         return isset($_SESSION[$key]);
     }
 
-    public function removeKey(string $key){
+    public function removeKey(string $key): void
+    {
         if($this->hasKey($key)){
             unset($_SESSION[$key]);
         }
     }
 
-    public function destroy(){
+    public function destroy(): void
+    {
         session_unset();
         session_destroy();
     }

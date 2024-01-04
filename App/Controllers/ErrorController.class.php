@@ -2,14 +2,13 @@
 
 namespace app\controllers;
 
-use app\Models\DatabaseModel;
 use app\Views\TemplateLoader;
 
 class ErrorController implements IController
 {
 
 
-    public function show(array $pageInfo)
+    public function show(array $pageInfo, array $uriParams): void
     {
         $templateLoader = new TemplateLoader();
 

@@ -3,8 +3,8 @@ body {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
+    /*position: absolute;*/
+    /*bottom: 0;*/
     width: 100%;
     height: 2.5rem;            /* Footer height */
     justify-content: center;
@@ -17,10 +17,12 @@ footer {
 
     transition: .25s;
     height: auto;
+}
 
-    -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,0.43);
-    -moz-box-shadow: 0 0 10px 1px rgba(0,0,0,0.43);
-    box-shadow: 0 0 10px 1px rgba(0,0,0,0.43);
+.box-shadow {
+    -webkit-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    -moz-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
 }
 
 .post .ptext{
@@ -78,4 +80,102 @@ footer {
     color: grey;
     font-weight: bold;
 
+}
+
+.user-credentials{
+    background-color: white;
+    min-width: auto;
+}
+
+.credentials-divider{
+    height: 100%;
+    width: 2px;
+    background-color: #565e64;
+}
+
+.feed{
+
+}
+
+.feed-text{
+    margin-top: 5px;
+    text-align: center;
+}
+
+.post-divider{
+    width: 75%;
+    left: 12.5%;
+    position: relative;
+    height: 1px;
+    background-color: #565e64;
+    margin-bottom: 10px;
+}
+
+.post-username{
+    margin-top: -20px;
+    color: rgba(0, 0, 0, 0.27);
+}
+
+.create-post-textarea{
+    resize: none;
+    border: none;
+    background-color: #f0f2f5;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.create-post-textarea:hover{
+    background-color: #e6e8eb;
+}
+.create-post-textarea::placeholder{
+    color: rgba(0, 0, 0, 0.25);
+}
+.create-post-textarea:focus{
+    background-color: #f0f2f5;
+
+    border-color: #e6e8eb !important;
+    box-shadow: 0 .5rem 1rem rgba(50,50,50, .15)
+
+}
+
+.post-button{
+    background-color: #f0f2f5;
+    border-color: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    position: relative;
+
+    margin-bottom: 10px;
+}
+
+.comment-button{
+    background-color: #f0f2f5;
+    border-color: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    position: relative;
+
+    font-size: .75rem;
+
+    margin-bottom: 10px;
+}
+
+.comment-username{
+    margin-top: 2px;
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.27);
+}
+
+.delpmargin{
+    margin-bottom: 0px;
+}
+
+.post-button:hover{
+    background-color: #dcdee1;
 }

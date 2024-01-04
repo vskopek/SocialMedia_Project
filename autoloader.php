@@ -10,7 +10,8 @@ const ALLOWED_FILE_EXTENSIONS = array(
     ".interface.php"
 );
 
-function autoloadClass($className) {
+function autoloadClass($className): void
+{
     $className = str_replace(DEFAULT_NAMESPACE_BASE, DEFAULT_DIRECTORY_NAME, $className);
     $fileName = dirname(__FILE__) . "\\" . $className;
 

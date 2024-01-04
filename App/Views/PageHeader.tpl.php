@@ -1,14 +1,14 @@
 <?php global $templateData?>
 
 <!doctype html>
-<html>
+<html lang="cs">
 <head>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/styles.css" />
     <link rel="icon" type="image/x-icon" href="/icon.ico">
@@ -31,10 +31,10 @@
                     <a class="nav-link active " aria-current="page" href="/">Feed</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="profile">Profile</a>
+                    <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="friends">Friends</a>
+                    <a class="nav-link" href="/friends">Friends</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="login" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,8 +51,12 @@
                         if($templateData["user_data"] == null){
                         ?>
                             <form class="form-horizontal" method="post" action="/" accept-charset="UTF-8">
-                                <input class="form-control login" type="text" name="username" placeholder="Username"><br>
-                                <input class="form-control login" type="password" name="password" placeholder="Password"><br>
+                                <label>
+                                    <input class="form-control login" type="text" name="username" placeholder="Username">
+                                </label><br>
+                                <label>
+                                    <input class="form-control login" type="password" name="password" placeholder="Password">
+                                </label><br>
                                 <input class="btn btn-primary" type="submit" name="login" value="Login">
                             </form>
                             <div class="dropdown-divider"></div>

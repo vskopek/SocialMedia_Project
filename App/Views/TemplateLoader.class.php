@@ -15,17 +15,16 @@ class TemplateLoader
     const ERROR_PAGE = "Error.tpl.php";
     const SIGNUP_PAGE = "Signup.tpl.php";
     const PROFILE_PAGE = "Profile.tpl.php";
+    const COMMENTS_PAGE = "Comments.tpl.php";
 
-    /**
-     * @param UserModel $userModel
-     */
     public function __construct()
     {
         $this->userModel = UserModel::getUserModel();
     }
 
 
-    public function printOutput(array $data, string $page){
+    public function printOutput(array $data, string $page): void
+    {
         $loggedUserData = $this->userModel->getCurrentUserData();
         global $templateData;
         $templateData = array_merge($data, array(

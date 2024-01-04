@@ -5,15 +5,19 @@ if(!$templateData["userLogged"]){
 ?>
 <p class="signup-header h1">Create your account by filling out this form</p>
 
-<div class="signup-wrap rounded-4 p-3 m-3">
+<div class="signup-wrap box-shadow rounded-4 p-3 m-3">
     <form action="/signup" method="POST">
         <div class="row">
-            <label for="exampleInputEmail1">Name</label>
+            <label>Name</label>
             <div class="col">
-                <input type="text" name="firstname" class="form-control" placeholder="First name">
+                <label>
+                    <input type="text" name="firstname" class="form-control" placeholder="First name">
+                </label>
             </div>
             <div class="col-12 col-sm-12 col-lg-6 col-md-6">
-                <input type="text" name ="lastname" class="form-control" placeholder="Last name">
+                <label>
+                    <input type="text" name ="lastname" class="form-control" placeholder="Last name">
+                </label>
             </div>
         </div>
         <div class="form-group">
