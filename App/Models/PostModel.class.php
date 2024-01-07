@@ -2,22 +2,43 @@
 
 namespace app\Models;
 
+/**
+ * Post model that handles creating and commenting posts
+ * Gives access to post data and editing / deleting posts
+ * Singleton class
+ * @author Václav Škopek
+ */
 class PostModel
 {
+    /**
+     * @var PostModel|null Post model instance
+     */
     private static ?PostModel $postModel = null;
 
+    /**
+     * @var UserModel User model instance
+     */
     private UserModel $userModel;
+    /**
+     * @var DatabaseModel Database model instance
+     */
     private DatabaseModel $db;
 
 
-
+    /**
+     * Initializes user model and database model instances
+     */
     public function __construct()
     {
         $this->userModel=UserModel::getUserModel();
         $this->db=DatabaseModel::getDatabase();
     }
 
-    public static function getPostModel(): ?PostModel
+    /**
+     * Singleton method to return post model instance
+     * @return PostModel Post model instance
+     */
+    public static function getPostModel(): PostModel
     {
         if(self::$postModel==null){
             self::$postModel = new PostModel();
@@ -26,6 +47,13 @@ class PostModel
         return self::$postModel;
     }
 
+    /**
+     * Checks if data contains info about creating post
+     * Creates post data if given info and saves it to database
+     * gives back id of the post
+     * @param $data $_POST data containing info about the submitted form
+     * @return int|null post id | null if no data
+     */
     public function createPost($data): null|int
     {
         if(!empty($data["createpost"]) && !empty($data["postcontent"])) {
@@ -47,6 +75,10 @@ class PostModel
         return null;
     }
 
+    /**
+     * Returns all posts from database
+     * @return bool|array array with posts
+     */
     public function getAllPosts(): bool|array
     {
         $statement = "SELECT * FROM article";
@@ -55,14 +87,25 @@ class PostModel
 
     }
 
-    public function getPostsFromUser(int $userId): bool|array
+    /**
+     * Returns posts bound to currently logged user with his user id
+     * @return bool|array Posts bound to logged user
+     */
+    public function getPostsFromLoggedUser(): bool|array
     {
+        $userId = $this->userModel->getUserId();
         $statement = "SELECT * FROM article WHERE id_user=:id_user";
 
         return $this->db->prepareAndExecuteStatement($statement, array("id_user" => $userId));
     }
 
-    public function getPostByID(int $articleID){
+    /**
+     * Retrieves post from database by its ID
+     * @param int $articleID ID of post
+     * @return array|null post data | null if ID isn't bound to post
+     */
+    public function getPostByID(int $articleID): array | null
+    {
         $statement = "SELECT * FROM article WHERE id_article=:id_article";
 
         $result = $this->db->prepareAndExecuteStatement($statement, array("id_article" => $articleID));
@@ -74,7 +117,13 @@ class PostModel
         }
     }
 
-    private function transformDataIntoTemplateData($post, $authorData): array
+    /**
+     * Transforms post data from database into readable data for templates
+     * @param array $post Post data from database
+     * @param array $authorData Author data from database
+     * @return array Template data
+     */
+    private function transformDataIntoTemplateData(array $post, array $authorData): array
     {
         $newPostData = array();
         $newPostData["id_article"] = $post["id_article"];
@@ -86,6 +135,11 @@ class PostModel
         return  $newPostData;
     }
 
+    /**
+     * Translates one post from database into readable data for templates
+     * @param array $post Post data from database
+     * @return array|null Template data | null if there's no author bound to the post
+     */
     public function translateToTemplatePost(array $post): array|null{
         $authorData = $this->userModel->getUserData($post["id_user"]);
 
@@ -96,6 +150,11 @@ class PostModel
         return null;
     }
 
+    /**
+     * Translates array of posts from database into readable data for templates
+     * @param array $posts Array of post data from database
+     * @return array Array of transformed post data
+     */
     public function translateToTemplatePosts(array $posts): array
     {
         $translatedPosts = array();
@@ -111,7 +170,15 @@ class PostModel
         return array_reverse($translatedPosts);
     }
 
-    public function commentPost($articleId, $data): bool|string|null
+    /**
+     * Checks if there's info about commenting post
+     * and creates comment data which saves into database
+     * gives back ID of the comment
+     * @param string $articleId ID of post to be commented
+     * @param array $data Data from submitted form
+     * @return string|null ID of comment | null if there's no data
+     */
+    public function commentPost(string $articleId, array $data): string|null
     {
         if(!empty($data["comment-post"]) && !empty($data["comment-content"])) {
             if ($this->userModel->isUserLogged()) {
@@ -133,7 +200,12 @@ class PostModel
         return null;
     }
 
-    public function returnPostComments($articleId): bool|array
+    /**
+     * Gives back array of comments from database bound to article ID
+     * @param string $articleId Article ID
+     * @return array Array of comments
+     */
+    public function returnPostComments(string $articleId): array
     {
         $statement = "SELECT * FROM comment WHERE id_article=:id_article";
 

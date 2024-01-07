@@ -42,6 +42,11 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
         <p class="h3 feed-text">Feed</p>
     </div>
 </div>
+<br>
+<!---->
+<!--<button type="button" class="delete-post-button" aria-label="Close">-->
+<!--    //                    <img src="/Images/trashcan-icon.png" width="25" height="25" alt="delete post"></img>-->
+<!--    //                </button>-->
 
 <div class="container-fluid">
     <?php

@@ -17,6 +17,9 @@ footer {
 
     transition: .25s;
     height: auto;
+
+    /*min-height: 250px;*/
+    /*max-height: 250px;*/
 }
 
 .box-shadow {
@@ -84,17 +87,12 @@ footer {
 
 .user-credentials{
     background-color: white;
-    min-width: auto;
 }
 
 .credentials-divider{
     height: 100%;
     width: 2px;
     background-color: #565e64;
-}
-
-.feed{
-
 }
 
 .feed-text{
@@ -178,4 +176,111 @@ footer {
 
 .post-button:hover{
     background-color: #dcdee1;
+}
+
+.delete-post-button {
+    background-color: transparent;
+    position: relative;
+    left: 100%;
+    margin-left: -40px;
+    border: none;
+}
+
+.edit-user-button {
+    background-color: #98cef5;
+    font-weight: bold;
+}
+
+.edit-user-button:hover {
+    background-color: #5eb5f2;
+
+    -webkit-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    -moz-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+}
+
+.edit-user-modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.centered {
+    margin: 0 auto;
+}
+
+.bgcolor {
+    background-color: #f0f2f5;
+}
+
+.role-button{
+    border: none;
+}
+
+.role-save-button{
+    background-color: #a1e34d;
+    border-color: rgba(0, 0, 0, 0.13);
+    font-weight: bold;
+
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    position: relative;
+
+    margin-bottom: 10px;
+
+    transition: .5s;
+}
+
+.role-save-button:hover {
+    background-color: #a0e13b;
+
+    -webkit-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    -moz-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+}
+
+.role-close-button {
+    height: 30px;
+    width: 30px;
+
+    border: none;
+    background-color: transparent;
+
+    color: rgba(0,0,0,.4);
+
+    position: relative;
+    left: 100%;
+
+
+    top:30px;
+    margin-left: -30px;
+}
+
+.role-close-button:hover{
+    font-weight: bolder;
+}
+
+.role-radio label {
+    margin-left: -15px;
+    background-color: #f0f2f5;
+    font-weight: bold;
+
+    border: solid .15rem;
+    border-color: rgba(0, 0, 0, 0.07);
+}
+.role-radio input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+}
+
+.role-radio input[type="radio"]:checked+label,
+.Checked+label {
+    background: #a1e34d;
 }

@@ -3,31 +3,29 @@
 namespace app\controllers;
 
 use app\Models\PostModel;
+use app\Models\UserModel;
 use app\Views\TemplateLoader;
 
-class ProfileController implements IController
+class UsersController implements IController
 {
-    private PostModel $postModel;
+    private UserModel $userModel;
 
     public function __construct()
     {
-        $this->postModel=PostModel::getPostModel();
+        $this->userModel = UserModel::getUserModel();
     }
-
 
     public function show(array $pageInfo, array $uriParams): void
     {
         $templateLoader = new TemplateLoader();
 
-//        $profileID = $uriParams[1];
-////        echo  $profileID;
+        if(isset($uriParams[1]) && isset($_POST["role"]))
 
-        $posts = $this->postModel->getPostsFromLoggedUser();
 
         $templateLoader->printOutput(
             array(
-            "title" => $pageInfo["title"],
-            "posts" => $this->postModel->translateToTemplatePosts($posts)
+                "title" => $pageInfo["title"],
+                "users" => $this->userModel->getAllUsers()
             ),
             $pageInfo["template"]
         );

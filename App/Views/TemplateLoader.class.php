@@ -16,6 +16,7 @@ class TemplateLoader
     const SIGNUP_PAGE = "Signup.tpl.php";
     const PROFILE_PAGE = "Profile.tpl.php";
     const COMMENTS_PAGE = "Comments.tpl.php";
+    const USERS_PAGE = "Users.tpl.php";
 
     public function __construct()
     {

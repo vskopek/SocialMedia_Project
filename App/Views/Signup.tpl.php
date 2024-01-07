@@ -8,26 +8,23 @@ if(!$templateData["userLogged"]){
 <div class="signup-wrap box-shadow rounded-4 p-3 m-3">
     <form action="/signup" method="POST">
         <div class="row">
-            <label>Name</label>
             <div class="col">
-                <label>
-                    <input type="text" name="firstname" class="form-control" placeholder="First name">
-                </label>
+                <label for="firstname" class="mb-1">First name</label>
+                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="First name">
             </div>
             <div class="col-12 col-sm-12 col-lg-6 col-md-6">
-                <label>
-                    <input type="text" name ="lastname" class="form-control" placeholder="Last name">
-                </label>
+                <label for="firstname" class="mb-1">Last name</label>
+                <input type="text" id="firstname" name ="lastname" class="form-control" placeholder="Last name">
             </div>
         </div>
         <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username" class="mb-1">Username</label>
             <input type="text" name="username" class="form-control" id="username" placeholder="Username">
         </div>
         <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email" class="mb-1">Email address</label>
             <input type="email" name ="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-            <label for="password">Password</label>
+            <label for="password" class="mb-1">Password</label>
             <input type="password" name="password" class="form-control" id="password" placeholder="Password">
         </div>
         <br>

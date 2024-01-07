@@ -11,12 +11,11 @@ if(!isset($templateData["user_data"])){
 <br>
 <div class="signup-wrap box-shadow rounded-4 p-3 m-3">
     <form class="form-horizontal" method="post" action="/" accept-charset="UTF-8">
-        <label>
-            <input class="form-control login" type="text" name="username" placeholder="Username">
-        </label><br>
-        <label>
-            <input class="form-control login" type="password" name="password" placeholder="Password">
-        </label><br>
+        <label for="username"></label>
+        <input id="username" class="form-control login" type="text" name="username" placeholder="Username">
+        <label for="password"></label>
+        <input id="password" class="form-control login" type="password" name="password" placeholder="Password">
+        <br>
         <input class="btn btn-primary" type="submit" name="login" value="Login">
     </form>
     <div class="dropdown-divider"></div>
@@ -49,7 +48,7 @@ if(!isset($templateData["user_data"])){
         <div class="container-fluid col-xl-8  col-md-12">
             <div class="d-flex justify-content-center">
                 <div class="signup-wrap box-shadow rounded-4 feed col-8 col-sm-3 col-md-2 p-1">
-                    <p class="h3 feed-text">My posts</p>
+                    <p class="h3 feed-text">Posts</p>
                 </div>
             </div>
             <br>
@@ -83,6 +82,7 @@ if(!isset($templateData["user_data"])){
         </div>
     </div>
 </div>
+
 
     <?php
         }

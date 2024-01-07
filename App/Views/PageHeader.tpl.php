@@ -9,11 +9,14 @@
 <!--    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="/js/role_ajax.js"></script>
     <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/styles.css" />
     <link rel="icon" type="image/x-icon" href="/icon.ico">
 
-    <title><?php echo $templateData["title"]; ?></title>
+    <title><?php use app\Models\UserModel;
+
+        echo $templateData["title"]; ?></title>
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-lg bg-body-tertiary">
@@ -33,9 +36,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">Profile</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/friends">Friends</a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/friends">Friends</a>-->
+<!--                </li>-->
+                <?php
+                if($templateData["user_data"] != null && $templateData["user_data"]["role"] >= UserModel::SUPER_ADMIN){
+                    echo '<li class="nav-item">
+                            <a class="nav-link" href="/users">Users</a>
+                        </li>';
+                }
+                ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="login" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php

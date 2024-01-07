@@ -5,6 +5,7 @@ use app\controllers\ErrorController;
 use app\controllers\HomeController;
 use app\controllers\ProfileController;
 use app\controllers\SignupController;
+use app\controllers\UsersController;
 use app\Views\TemplateLoader;
 
 const MYSQL_SERVER = "localhost";
@@ -37,6 +38,17 @@ const PAGES = array(
 
         "controller_class" => CommentController::class,
         "template" => TemplateLoader::COMMENTS_PAGE
+    ),
+    "users" => array(
+        "title" => "Users",
+
+        "controller_class" => UsersController::class,
+        "template" => TemplateLoader::USERS_PAGE
+    ),
+    "role_ajax" => array(
+        "title" => "",
+        "controller_class" =>\app\controllers\AjaxController::class,
+        "ajax_file" => "app\\role_ajax.php"
     ),
     "404" => array(
         "title" => "Error 404",
