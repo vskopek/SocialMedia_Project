@@ -25,8 +25,9 @@ if(!isset($templateData["user_data"])){
 }else{
 ?>
 <div class="signup-wrap rounded-4 m-4 box-shadow p-3">
-    <p class="h1 m-0"><?php echo sprintf("%s %s", $templateData["user_data"]["firstname"],$templateData["user_data"]["lastname"]); ?></p>
-    <p class="m-0"><?php echo sprintf("@%s",$templateData["user_data"]["username"]); ?></p>
+    <img width="300" height="300" alt="profile picture" class="rounded-5 m-0" src="<?php echo str_replace(SITE_ROOT,"",$templateData["user_data"]["profile_picture"]) ?>">
+    <p class="h1 ms-1 mt-1 mb-0"><?php echo sprintf("%s %s", $templateData["user_data"]["firstname"],$templateData["user_data"]["lastname"]); ?></p>
+    <p class="m-0 ms-1 mt-0"><?php echo sprintf("@%s",$templateData["user_data"]["username"]); ?></p>
 </div>
 <div class="container-fluid">
     <div class="row px-2">
@@ -60,8 +61,15 @@ if(!isset($templateData["user_data"])){
                 $currentEcho .=
                     '<div class="col-12 col-md-6 col-lg-3 p-1">
                         <div class="post box-shadow rounded-3 w-100">
-                            <p class="h5 ptext">'.$post["author_name"].'</p>
-                            <p class="h6 ptext post-username">'.$post["author_username"].'</p>
+                            <div class="d-flex">
+                                <img src="'.$post["author_profile_picture"].'" width="45" height="45" class="rounded-5 ms-2 mt-2">
+                                <div>
+                                    <p class="h5 ptext">
+                                    '.$post["author_name"].'
+                                    </p>
+                                    <p class="h6 ptext post-username">'.$post["author_username"].'</p>
+                                </div>
+                            </div>
                             <p class="ptext">'.$post["content"].'</p>
                             <div class="bottom">
                                 <a class="comments-link" href="/comments/'.$post["id_article"].'">Comments</a>

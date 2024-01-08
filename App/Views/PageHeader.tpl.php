@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/js/role_ajax.js"></script>
+    <script src="/js/profile-picture.js"></script>
     <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/styles.css" />
     <link rel="icon" type="image/x-icon" href="/icon.ico">
@@ -40,7 +41,7 @@
 <!--                    <a class="nav-link" href="/friends">Friends</a>-->
 <!--                </li>-->
                 <?php
-                if($templateData["user_data"] != null && $templateData["user_data"]["role"] >= UserModel::SUPER_ADMIN){
+                if($templateData["user_data"] != null && $templateData["user_data"]["role"] >= UserModel::ADMIN){
                     echo '<li class="nav-item">
                             <a class="nav-link" href="/users">Users</a>
                         </li>';

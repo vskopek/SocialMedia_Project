@@ -19,7 +19,10 @@ class UsersController implements IController
     {
         $templateLoader = new TemplateLoader();
 
-        if(isset($uriParams[1]) && isset($_POST["role"]))
+        if(isset($uriParams[1]) && isset($_POST["role"])){
+            $this->userModel->updateUserRole($uriParams[1], $this->userModel::roleToNumber($_POST["role"]));
+            header("Location: /users");
+        }
 
 
         $templateLoader->printOutput(

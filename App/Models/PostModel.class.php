@@ -130,7 +130,7 @@ class PostModel
         $newPostData["content"] = $post["content"];
         $newPostData["author_name"] = sprintf("%s %s", $authorData["firstname"],$authorData["lastname"]);
         $newPostData["author_username"] = sprintf("@%s", $authorData["username"]);
-
+        $newPostData["author_profile_picture"] = str_replace(SITE_ROOT, "", $authorData["profile_picture"]);
 
         return  $newPostData;
     }

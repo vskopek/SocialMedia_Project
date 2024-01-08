@@ -17,7 +17,11 @@ class SignupController implements IController
 
     public function show(array $pageInfo, array $uriParams): void
     {
-        $this->userModel->checkForRegister($_POST);
+        $res = $this->userModel->checkForRegister($_POST);
+
+        if($res){
+            header("Location: /");
+        }
 
         if(!empty($_POST["logout"])) {
             $this->userModel->userLogout();

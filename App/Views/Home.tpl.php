@@ -43,10 +43,10 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
     </div>
 </div>
 <br>
-<!---->
-<!--<button type="button" class="delete-post-button" aria-label="Close">-->
-<!--    //                    <img src="/Images/trashcan-icon.png" width="25" height="25" alt="delete post"></img>-->
-<!--    //                </button>-->
+
+<button type="button" class="delete-post-button" aria-label="Close">
+    <img src="/Images/trashcan-icon.png" width="25" height="25" alt="delete post"></img>
+</button>
 
 <div class="container-fluid">
     <?php
@@ -57,8 +57,15 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
         $currentEcho .=
         '<div class="col-12 col-md-6 col-lg-3 p-1">
             <div class="post box-shadow rounded-3 w-100">
-                <p class="h5 ptext">'.$post["author_name"].'</p>
-                <p class="h6 ptext post-username">'.$post["author_username"].'</p>
+                <div class="d-flex">
+                    <img src="'.$post["author_profile_picture"].'" width="45" height="45" class="rounded-5 ms-2 mt-2">
+                    <div>
+                        <p class="h5 ptext">
+                        '.$post["author_name"].'
+                        </p>
+                        <p class="h6 ptext post-username">'.$post["author_username"].'</p>
+                    </div>
+                </div>
                 <p class="ptext">'.$post["content"].'</p>
                 <div class="bottom">
                     <a class="comments-link" href="/comments/'.$post["id_article"].'">Comments</a>

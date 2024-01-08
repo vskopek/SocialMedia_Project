@@ -23,13 +23,16 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
         ?>
         <div class="create-post-textarea p-2 rounded-4 mb-1 pb-0">
             <div class="d-flex justify-content-between">
-                <div class="ms-1" id="user-content">
-                    <p class="h5 ptext mb-0" id="name">
-                        <?php echo sprintf("%s %s", $user["firstname"], $user["lastname"]); ?>
-                    </p>
-                    <p class="h6 ptext comment-username mt-0 ms-0" id="username">
-                        <?php echo "@".$user["username"] ?>
-                    </p>
+                <div class="d-flex" id="user-content">
+                    <img width="45" height="45" alt="profile picture" class="rounded-5 me-1" src="<?php echo str_replace(SITE_ROOT,"",$user["profile_picture"]) ?>">
+                    <div>
+                        <p class="h5 ptext mb-0" id="name">
+                            <?php echo sprintf("%s %s", $user["firstname"], $user["lastname"]); ?>
+                        </p>
+                        <p class="h6 ptext comment-username mt-0 ms-0" id="username">
+                            <?php echo "@".$user["username"] ?>
+                        </p>
+                    </div>
                 </div>
                 <?php if($templateData["user_data"]["role"] > $user["role"]){ ?>
                 <button class="mb-2 me-2 edit-user-button btn rounded-4" id="<?php echo $user["id_user"] ?>" onclick="editClicked(this.id)">Edit</button>

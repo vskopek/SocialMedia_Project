@@ -13,6 +13,7 @@ const MYSQL_DB = "test";
 const MYSQL_USERNAME = "root";
 const MYSQL_PASSWORD = "root";
 
+const SITE_ROOT = __DIR__;
 
 const PAGES = array(
     "home" => array(

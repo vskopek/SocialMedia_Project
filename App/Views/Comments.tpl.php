@@ -44,11 +44,12 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
         foreach($templateData["comments"] as $comment){
         ?>
         <div class="create-post-textarea p-2 rounded-4 mb-1">
-            <div class="d-flex">
-                <p class="h5 ptext"><?php echo $comment["author_name"] ?></p>
+            <div class="d-flex mb-2">
+                <img width="45" height="45" alt="profile picture" class="rounded-5 me-1" src="<?php echo str_replace(SITE_ROOT,"",$comment["author_profile_picture"]) ?>">
+                <p class="h5 ptext mb-0"><?php echo $comment["author_name"] ?></p>
                 <p class="h6 ptext comment-username"><?php echo $comment["author_username"] ?></p>
             </div>
-            <p class="delpmargin"><?php echo $comment["content"] ?></p>
+            <p class="delpmargin comment-text"><?php echo $comment["content"] ?></p>
         </div>
         <?php }}else { ?>
         <p class="h4">No comments</p>

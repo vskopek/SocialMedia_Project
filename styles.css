@@ -170,6 +170,11 @@ footer {
     color: rgba(0, 0, 0, 0.27);
 }
 
+.comment-text{
+    margin-left: 3.25rem;
+    margin-top: -1.75rem;
+}
+
 .delpmargin{
     margin-bottom: 0px;
 }
@@ -283,4 +288,23 @@ footer {
 .role-radio input[type="radio"]:checked+label,
 .Checked+label {
     background: #a1e34d;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-profile-picture {
+    background-color: #f0f2f5;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .5s;
+}
+
+.upload-profile-picture:hover {
+    -webkit-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    -moz-box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
+    box-shadow: 0 .5rem 1rem rgba(50,50,50, .15);
 }

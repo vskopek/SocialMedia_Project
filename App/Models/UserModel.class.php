@@ -28,6 +28,11 @@ class UserModel
     private SessionModel $session;
 
     /**
+     * Directory for storing profile pictures
+     */
+    private const PROFILE_PICTURE_DIRECTORY = SITE_ROOT."/Images/ProfilePictures/";
+
+    /**
      * Super administrator role range
      */
     public const SUPER_ADMIN = 255;
@@ -107,6 +112,19 @@ class UserModel
         return false;
     }
 
+    public function uploadProfilePicture(array $data, string $username): string{
+        if(isset($data["profile_picture"])) {
+            $fileExtension = strtolower(pathinfo($data["profile_picture"]["name"], PATHINFO_EXTENSION));
+            $filePath = self::PROFILE_PICTURE_DIRECTORY . $username .".".$fileExtension;
+
+            if(move_uploaded_file($data["profile_picture"]["tmp_name"], $filePath)){
+                return $filePath;
+            }
+        }
+
+        return "/Images/profile-picture-icon.png";
+    }
+
     /**
      * Checks if $data contains info about logging the client
      * @param array $data Data from submitted form
@@ -132,10 +150,13 @@ class UserModel
     {
         $vanillaPassword = $userData["password"];
         $userData["password"] = password_hash($userData["password"], PASSWORD_BCRYPT);
-        $statement = "INSERT INTO user (username, password, firstname, lastname, email)
-                        VALUES (:username, :password, :firstname, :lastname, :email)";
 
+        $profilePicturePath = $this->uploadProfilePicture($_FILES, $userData["username"]);
 
+        $statement = "INSERT INTO user (username, password, firstname, lastname, email, profile_picture)
+                        VALUES (:username, :password, :firstname, :lastname, :email, :profile_picture)";
+
+        $userData["profile_picture"] = $profilePicturePath;
 
         $this->db->prepareAndExecuteStatement($statement, $userData);
 
