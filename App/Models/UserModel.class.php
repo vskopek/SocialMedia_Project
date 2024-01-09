@@ -81,6 +81,19 @@ class UserModel
     }
 
     /**
+     * Runs through the data and runs string through htmlspecialchars()
+     * @param array $data String array
+     * @return void
+     */
+    private function toSpecialChars(array $data):void{
+        foreach($data as $k => $value){
+            if(is_string($value)){
+                $data[$k] = htmlspecialchars($value);
+            }
+        }
+    }
+
+    /**
      * @return UserModel Singleton method to return user model instance
      */
     public static function getUserModel(): UserModel
@@ -103,6 +116,7 @@ class UserModel
             if (isset($data["username"]) && isset($data["password"]) && isset($data["email"])
                 && isset($data["firstname"]) && isset($data["lastname"])) {
                 unset($data["register"]);
+                $this->toSpecialChars($data);
                 return $this->registerUser($data);
             }
         }
@@ -140,6 +154,7 @@ class UserModel
     {
         if (isset($data["username"]) && isset($data["password"]))
         {
+            $this->toSpecialChars($data);
             return $this->userLogin($data["username"], $data["password"]);
         }
 

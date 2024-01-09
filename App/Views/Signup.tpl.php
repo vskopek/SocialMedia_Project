@@ -40,8 +40,12 @@ if(!$templateData["userLogged"]){
 </div>
 
 <?php }else{?>
-    <p class="signup-header h1">Already logged in, please log out before registering.</p>
-    <form action="/signup" method="POST">
-        <button type="submit" name="logout" class="btn btn-primary signup-logout" value="logout">Logout</button>
-    </form>
+    <div class="mb-2">
+        <p class="signup-header h1">Already logged in, please log out before registering.</p>
+        <div class="container-fluid">
+            <form action="/signup" method="POST">
+                <button type="submit" name="logout" class="btn btn-primary signup-logout" value="logout">Logout</button>
+            </form>
+        </div>
+    </div>
 <?php }?>

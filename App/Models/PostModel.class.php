@@ -100,6 +100,19 @@ class PostModel
     }
 
     /**
+     * Runs through the data and runs string through htmlspecialchars()
+     * @param array $data String array
+     * @return void
+     */
+    private function toSpecialChars(array $data): void{
+        foreach($data as $k => $value){
+            if(is_string($value)){
+                $data[$k] = htmlspecialchars($value);
+            }
+        }
+    }
+
+    /**
      * Retrieves post from database by its ID
      * @param int $articleID ID of post
      * @return array|null post data | null if ID isn't bound to post
@@ -133,7 +146,9 @@ class PostModel
         $newPostData["author_username"] = sprintf("@%s", $authorData["username"]);
         $newPostData["author_profile_picture"] = str_replace(SITE_ROOT, "", $authorData["profile_picture"]);
 
-        return  $newPostData;
+        $this->toSpecialChars($newPostData);
+
+        return $newPostData;
     }
 
     /**
