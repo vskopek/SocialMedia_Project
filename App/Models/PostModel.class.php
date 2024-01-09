@@ -63,7 +63,7 @@ class PostModel
                 if ($userData["role"] > UserModel::COMMENTER) {
                     $statement = "INSERT INTO article (content, id_user) VALUES (:content, :id_user)";
                     $this->db->prepareAndExecuteStatement($statement, array(
-                        "content"=>$data["postcontent"],
+                        "content"=>htmlspecialchars($data["postcontent"]),
                         "id_user"=>$userData["id_user"]
                     ));
 
@@ -188,7 +188,7 @@ class PostModel
                 if ($userData["role"] >= UserModel::COMMENTER) {
                     $statement = "INSERT INTO comment (content, id_article, id_user) VALUES (:content, :id_article, :id_user)";
                     $this->db->prepareAndExecuteStatement($statement, array(
-                        "content"=>$data["comment-content"],
+                        "content"=>htmlspecialchars($data["comment-content"]),
                         "id_user"=>$userData["id_user"],
                         "id_article"=>$articleId
                     ));
