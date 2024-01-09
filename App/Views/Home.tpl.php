@@ -44,12 +44,17 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
 </div>
 <br>
 
-<button type="button" class="delete-post-button" aria-label="Close">
-    <img src="/Images/trashcan-icon.png" width="25" height="25" alt="delete post"></img>
-</button>
+
 
 <div class="container-fluid">
     <?php
+    $deleteButton = (isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= UserModel::ADMIN) ?
+                    '<form class="delete-post-form mt-1" action="/" method="POST">
+                        <input type="number" name="id" value="%s" hidden="hidden">
+                        <button type="submit" class="delete-post-button" name="delete-post" aria-label="Close" >
+                            <img src="/Images/trashcan-icon.png" width="25" height="25" alt="delete post"></img>
+                        </button>
+                     </form>' : '';
 
     $c = 1;
     $currentEcho = '<div class="row px-2">';
@@ -58,6 +63,7 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
         '<div class="col-12 col-md-6 col-lg-3 p-1">
             <div class="post box-shadow rounded-3 w-100">
                 <div class="d-flex">
+                    '.sprintf($deleteButton, $post["id_article"]).'
                     <img src="'.$post["author_profile_picture"].'" width="45" height="45" class="rounded-5 ms-2 mt-2">
                     <div>
                         <p class="h5 ptext">

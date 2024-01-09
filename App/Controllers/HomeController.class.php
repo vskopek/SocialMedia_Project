@@ -6,11 +6,24 @@ use app\Models\PostModel;
 use app\Models\UserModel;
 use app\Views\TemplateLoader;
 
+/**
+ * Controller for handling home page and checking for login/register and posting
+ * @author Václav Škopek
+ */
 class HomeController implements IController
 {
+    /**
+     * @var UserModel User model instance
+     */
     private UserModel $userModel;
+    /**
+     * @var PostModel Post model instance
+     */
     private PostModel $postModel;
 
+    /**
+     * Initializes user and post model instances
+     */
     public function __construct()
     {
         $this->userModel = UserModel::getUserModel();
@@ -28,6 +41,10 @@ class HomeController implements IController
         }
 
         $res = $this->postModel->createPost($_POST);
+
+        if($this->postModel->deletePost($_POST) != null){
+            header('Location: /');
+        }
 
         if($res != null){
             header('Location: /');

@@ -5,10 +5,20 @@ namespace app\controllers;
 use app\Models\PostModel;
 use app\Views\TemplateLoader;
 
+/**
+ * Controller for handling profile page
+ * @author Václav Škopek
+ */
 class ProfileController implements IController
 {
+    /**
+     * @var PostModel Post model instance
+     */
     private PostModel $postModel;
 
+    /**
+     * Initializes post model instance
+     */
     public function __construct()
     {
         $this->postModel=PostModel::getPostModel();
@@ -18,9 +28,6 @@ class ProfileController implements IController
     public function show(array $pageInfo, array $uriParams): void
     {
         $templateLoader = new TemplateLoader();
-
-//        $profileID = $uriParams[1];
-////        echo  $profileID;
 
         $posts = $this->postModel->getPostsFromLoggedUser();
 

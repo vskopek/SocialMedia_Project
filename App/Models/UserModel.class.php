@@ -2,8 +2,6 @@
 
 namespace app\Models;
 
-use http\Header;
-
 /**
  * User model for handling all related info about users
  * Handles authentication system for client (registering, logging in, log out)
@@ -112,13 +110,21 @@ class UserModel
         return false;
     }
 
+    /**
+     * Checks for uploading profile picture query
+     * gives picture unique name and saves it to /Images/ProfilePictures
+     * path to image is saved to database
+     * @param array $data Data about uploading from submit form
+     * @param string $username Username of user who's uploading the image
+     * @return string Path to profile picture
+     */
     public function uploadProfilePicture(array $data, string $username): string{
         if(isset($data["profile_picture"])) {
             $fileExtension = strtolower(pathinfo($data["profile_picture"]["name"], PATHINFO_EXTENSION));
             $filePath = self::PROFILE_PICTURE_DIRECTORY . $username .".".$fileExtension;
 
             if(move_uploaded_file($data["profile_picture"]["tmp_name"], $filePath)){
-                return $filePath;
+                return str_replace(SITE_ROOT, "", $filePath);
             }
         }
 
@@ -249,6 +255,20 @@ class UserModel
             "id_user" => $userId,
             "role" => $role
         ));
+    }
+
+    /**
+     * Deletes user bound to userId from database
+     * @param string $userId User Id
+     * @return void
+     */
+    public function deleteUser(string $userId): void
+    {
+        $statement = "DELETE FROM comment WHERE id_user=:id_user;
+                      DELETE FROM article WHERE id_user=:id_user;
+                      DELETE FROM user WHERE id_user=:id_user;";
+
+        $this->db->prepareAndExecuteStatement($statement, array("id_user"=>$userId));
     }
 
     /**

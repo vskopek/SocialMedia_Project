@@ -127,6 +127,7 @@ class PostModel
     {
         $newPostData = array();
         $newPostData["id_article"] = $post["id_article"];
+        $newPostData["id_comment"] = $post["id_comment"] ?? null;
         $newPostData["content"] = $post["content"];
         $newPostData["author_name"] = sprintf("%s %s", $authorData["firstname"],$authorData["lastname"]);
         $newPostData["author_username"] = sprintf("@%s", $authorData["username"]);
@@ -197,6 +198,35 @@ class PostModel
             }
         }
 
+        return null;
+    }
+
+    /**
+     * Removes all comments and articles bound to article id from $_POST on delete query
+     * @param array $data $_POST from delete query
+     * @return array|null
+     */
+    public function deletePost(array $data): array|null
+    {
+        if(isset($data["delete-post"]) && !empty($data["id"])) {
+            $statement = "DELETE FROM comment WHERE id_article=:id_article;
+                          DELETE FROM article WHERE id_article=:id_article;";
+            return $this->db->prepareAndExecuteStatement($statement, array("id_article" => $data["id"]));
+        }
+        return null;
+    }
+
+    /**
+     * Removes comment bound to comment ID from $_POST on delete query
+     * @param array $data $_POST from delete query
+     * @return array|null
+     */
+    public function deleteComment(array $data): array|null
+    {
+        if(isset($data["delete-comment"]) && !empty($data["id"])) {
+            $statement = "DELETE FROM comment WHERE id_comment=:id_comment";
+            return $this->db->prepareAndExecuteStatement($statement, array("id_comment" => $data["id"]));
+        }
         return null;
     }
 

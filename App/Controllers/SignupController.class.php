@@ -5,10 +5,19 @@ namespace app\controllers;
 use app\Models\UserModel;
 use app\Views\TemplateLoader;
 
+/**
+ * Controller for handling signup page
+ */
 class SignupController implements IController
 {
+    /**
+     * @var UserModel User model instance
+     */
     private UserModel $userModel;
 
+    /**
+     * Initializes user model instance
+     */
     public function __construct()
     {
         $this->userModel = UserModel::getUserModel();

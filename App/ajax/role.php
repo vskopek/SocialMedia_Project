@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace app\ajax;
 
 use app\Models\UserModel;
 
@@ -37,11 +37,10 @@ if(isset($_POST["userId"]) && $loggedUserData != null && $loggedUserData["role"]
                 <input type="radio" id="commenter" value="Commenter" name="role" <?php if($userData["role"] == UserModel::COMMENTER){ ?> checked="checked" <?php }?> />
                 <label for="commenter" class="rounded-4 p-2">Commenter</label>
             </div>
-            <button type="submit" class="role-save-button mt-3 rounded-4">Save</button>
+            <button type="submit" class="role-save-button mt-3 rounded-4" name="edit-role" value="ok">Save</button>
+            <button type="submit" class="delete-user-button mt-3 rounded-4" name="delete-user" value="ok">Delete user</button>
         </form>
     </div>
 </div>
 <?php
-}else{
-
 }

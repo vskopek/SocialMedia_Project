@@ -5,10 +5,20 @@ namespace app\controllers;
 use app\Models\PostModel;
 use app\Views\TemplateLoader;
 
+/**
+ * Controller for comment page
+ * @author Václav Škopek
+ */
 class CommentController implements IController
 {
+    /**
+     * @var PostModel Post model instance
+     */
     private PostModel $postModel;
 
+    /**
+     * Initializes post model instance
+     */
     public function __construct(){
         $this->postModel=PostModel::getPostModel();
     }
@@ -24,6 +34,10 @@ class CommentController implements IController
         $post = $this->postModel->getPostByID($articleId);
 
         $result = $this->postModel->commentPost($articleId, $_POST);
+
+        if($this->postModel->deleteComment($_POST) != null){
+            header('Location: /');
+        }
 
         if($result != null){
             header('Location: /comments/'.$articleId);

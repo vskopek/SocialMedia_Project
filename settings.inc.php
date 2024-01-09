@@ -1,5 +1,6 @@
 <?php
 
+use app\controllers\AjaxController;
 use app\controllers\CommentController;
 use app\controllers\ErrorController;
 use app\controllers\HomeController;
@@ -8,13 +9,31 @@ use app\controllers\SignupController;
 use app\controllers\UsersController;
 use app\Views\TemplateLoader;
 
+/**
+ * MySQL server that will be initialized with PDO
+ */
 const MYSQL_SERVER = "localhost";
-const MYSQL_DB = "test";
+/**
+ * MySQL database table that will be used
+ */
+const MYSQL_DB = "vskopek_test";
+/**
+ * MySQL's user username that will be connected with
+ */
 const MYSQL_USERNAME = "root";
+/**
+ * MySQL's user password that's bound to username
+ */
 const MYSQL_PASSWORD = "root";
 
+/**
+ * Root directory of the server application is running on
+ */
 const SITE_ROOT = __DIR__;
 
+/**
+ * Info about pages
+ */
 const PAGES = array(
     "home" => array(
         "title" => "Home",
@@ -47,9 +66,8 @@ const PAGES = array(
         "template" => TemplateLoader::USERS_PAGE
     ),
     "role_ajax" => array(
-        "title" => "",
-        "controller_class" =>\app\controllers\AjaxController::class,
-        "ajax_file" => "app\\role_ajax.php"
+        "controller_class" => AjaxController::class,
+        "ajax_file" => "app\\ajax\\role.php"
     ),
     "404" => array(
         "title" => "Error 404",

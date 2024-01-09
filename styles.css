@@ -183,12 +183,56 @@ footer {
     background-color: #dcdee1;
 }
 
-.delete-post-button {
+.delete-post-form {
     background-color: transparent;
+
     position: relative;
     left: 100%;
     margin-left: -40px;
+
+
     border: none;
+}
+
+.delete-user-button {
+    background-color: #e34d4d;
+    border-color: rgba(0, 0, 0, 0.13);
+    font-weight: bold;
+
+    left: 50%;
+    width: 150px;
+    position: relative;
+
+    margin-bottom: 10px;
+
+    transition: .5s;
+}
+
+.role-save-button{
+    background-color: #a1e34d;
+    border-color: rgba(0, 0, 0, 0.13);
+    font-weight: bold;
+
+    left: 50%;
+    margin-left: -125px;
+    width: 100px;
+    position: relative;
+
+    margin-bottom: 10px;
+
+    transition: .5s;
+}
+
+
+.delete-post-button {
+    background-color: transparent;
+    border: none;
+}
+
+.delete-comment{
+    top: 30px;
+    margin-top: -30px;
+    position: relative;
 }
 
 .edit-user-button {
@@ -226,21 +270,6 @@ footer {
 
 .role-button{
     border: none;
-}
-
-.role-save-button{
-    background-color: #a1e34d;
-    border-color: rgba(0, 0, 0, 0.13);
-    font-weight: bold;
-
-    left: 50%;
-    margin-left: -50px;
-    width: 100px;
-    position: relative;
-
-    margin-bottom: 10px;
-
-    transition: .5s;
 }
 
 .role-save-button:hover {

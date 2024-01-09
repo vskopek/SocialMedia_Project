@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use app\Views\TemplateLoader;
-
+/**
+ * Controller for ajax implementation
+ * @author Václav Škopek
+ */
 class AjaxController implements IController
 {
-
-
     public function show(array $pageInfo, array $uriParams): void
     {
         require_once ($pageInfo["ajax_file"]);

@@ -6,10 +6,15 @@ global $templateData;
 <div class="d-flex justify-content-center m-3">
     <div class="col-12 col-md-6 col-lg-4 p-1">
         <div class="post box-shadow rounded-3 w-100">
-            <p class="h5 ptext"><?php use app\Models\UserModel;
+            <div class="d-flex">
+                <img alt="profile picture" src="<?php echo $templateData["post"]["author_profile_picture"]?>" width="45" height="45" class="rounded-5 ms-2 mt-2">
+                <div>
+                    <p class="h5 ptext"><?php use app\Models\UserModel;
 
-                echo $templateData["post"]["author_name"] ?></p>
-            <p class="h6 ptext post-username"><?php echo $templateData["post"]["author_username"] ?></p>
+                        echo $templateData["post"]["author_name"] ?></p>
+                    <p class="h6 ptext post-username"><?php echo $templateData["post"]["author_username"] ?></p>
+                </div>
+            </div>
             <p class="ptext"><?php echo $templateData["post"]["content"] ?></p>
         </div>
     </div>
@@ -44,6 +49,16 @@ if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= Us
         foreach($templateData["comments"] as $comment){
         ?>
         <div class="create-post-textarea p-2 rounded-4 mb-1">
+            <?php if(isset($templateData["user_data"]) && $templateData["user_data"]["role"] >= UserModel::ADMIN){?>
+            <div class="d-flex justify-content-end delete-comment">
+                <form action="/comments/<?php echo $templateData["post"]["id_article"]?>/" method="POST">
+                    <input type="number" name="id" value="<?php echo $comment["id_comment"] ?>" hidden="hidden">
+                    <button type="submit" class="delete-post-button" name="delete-comment" aria-label="Close" >
+                        <img src="/Images/trashcan-icon.png" width="25" height="25" alt="delete post">
+                    </button>
+                </form>
+            </div>
+            <?php } ?>
             <div class="d-flex mb-2">
                 <img width="45" height="45" alt="profile picture" class="rounded-5 me-1" src="<?php echo str_replace(SITE_ROOT,"",$comment["author_profile_picture"]) ?>">
                 <p class="h5 ptext mb-0"><?php echo $comment["author_name"] ?></p>
