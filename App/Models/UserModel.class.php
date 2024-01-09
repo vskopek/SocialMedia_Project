@@ -113,8 +113,8 @@ class UserModel
     public function checkForRegister(array $data): bool|array
     {
         if(!empty($data["register"])) {
-            if (isset($data["username"]) && isset($data["password"]) && isset($data["email"])
-                && isset($data["firstname"]) && isset($data["lastname"])) {
+            if (isset($data["password"]) && isset($data["email"])
+                && isset($data["firstname"]) && isset($data["lastname"]) && !empty($data["username"])) {
                 unset($data["register"]);
                 $this->toSpecialChars($data);
                 return $this->registerUser($data);

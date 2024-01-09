@@ -1,6 +1,3 @@
-
-
-
 function editClicked(clickedID) {
 
     $.post(
